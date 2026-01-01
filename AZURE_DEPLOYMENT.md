@@ -6,7 +6,10 @@
 
 ## ✅ Project Status: READY FOR DEPLOYMENT
 
-Your backend is now configured for Azure App Service deployment.
+Your application is configured for Azure App Service deployment.
+
+**Frontend URL:** https://mastercard-csutherland.azurewebsites.net  
+**Backend URL:** https://mastercard-backend-csutherland.azurewebsites.net
 
 ## 📋 Pre-Deployment Checklist
 
@@ -41,8 +44,10 @@ Your backend is now configured for Azure App Service deployment.
    - Select "Create App Service Web App..."
    
 3. **Configure the Web App**
-   - **Name:** `mastercard-demo-csutherland` (must be globally unique)
-   - **Runtime Stack:** Python 3.11 or 3.12
+   - **Backend Name:** `mastercard-backend-csutherland`
+   - **Frontend Name:** `mastercard-csutherland`
+   - **Backend Runtime Stack:** Python 3.11 or 3.12
+   - **Frontend Runtime Stack:** Node 18 LTS
    - **Region:** Choose closest to you (e.g., East US, West US)
    - **Pricing Tier:** Free (F1) for demo
 
@@ -70,30 +75,37 @@ After deployment, you need to add your OpenAI API key:
 
 Your API will be available at:
 ```
-https://mastercard-demo-csutherland.azurewebsites.net
+https://mastercard-backend-csutherland.azurewebsites.net
 ```
 
 Test endpoints:
-- `https://mastercard-demo-csutherland.azurewebsites.net/` - Root endpoint
-- `https://mastercard-demo-csutherland.azurewebsites.net/api/scenarios` - Fraud scenarios
-- `https://mastercard-demo-csutherland.azurewebsites.net/api/merchants` - Merchant data
-- `https://mastercard-demo-csutherland.azurewebsites.net/api/customers` - Customer profiles
-- `https://mastercard-demo-csutherland.azurewebsites.net/api/disputes` - Dispute cases
+- `https://mastercard-backend-csutherland.azurewebsites.net/` - Root endpoint
+- `https://mastercard-backend-csutherland.azurewebsites.net/api/scenarios` - Fraud scenarios
+- `https://mastercard-backend-csutherland.azurewebsites.net/api/merchants` - Merchant data
+- `https://mastercard-backend-csutherland.azurewebsites.net/api/customers` - Customer profiles
+- `https://mastercard-backend-csutherland.azurewebsites.net/api/disputes` - Dispute cases
 
 ## 🖥️ Frontend Configuration
 
 After deploying the backend, update your frontend to use the Azure URL:
 
-1. Open `e:\Mastercard\frontend\src\config.js`
-2. Add the backend URL:
+1. Update `.env` file:
+```env
+VITE_BACKEND_URL=https://mastercard-backend-csutherland.azurewebsites.net
+```
+
+2. The `src/config.js` file automatically reads from environment variables:
 ```javascript
 export const config = {
-  OPENAI_API_KEY: 'sk-proj-...',
-  BACKEND_URL: 'https://mastercard-demo-csutherland.azurewebsites.net'
+  BACKEND_URL: import.meta.env.VITE_BACKEND_URL
 }
 ```
 
-3. Update all axios calls to use `config.BACKEND_URL` instead of `http://localhost:8000`
+3. Build and deploy frontend:
+```bash
+npm run build
+# Deploy dist folder to https://mastercard-csutherland.azurewebsites.net
+```
 
 ## 🔧 Alternative: Deploy via Azure CLI
 
@@ -109,15 +121,23 @@ az group create --name mastercard-demo-rg --location eastus
 # Create App Service plan
 az appservice plan create --name mastercard-plan --resource-group mastercard-demo-rg --sku F1 --is-linux
 
-# Create web app
-az webapp create --resource-group mastercard-demo-rg --plan mastercard-plan --name mastercard-demo-csutherland --runtime "PYTHON:3.11"
+# Create backend web app
+az webapp create --resource-group mastercard-demo-rg --plan mastercard-plan --name mastercard-backend-csutherland --runtime "PYTHON:3.11"
 
-# Deploy code
-cd e:\Mastercard\backend
-az webapp up --name mastercard-demo-csutherland --resource-group mastercard-demo-rg
+# Deploy backend code
+cd backend
+az webapp up --name mastercard-backend-csutherland --resource-group mastercard-demo-rg
 
-# Set environment variable
-az webapp config appsettings set --name mastercard-demo-csutherland --resource-group mastercard-demo-rg --settings OPENAI_API_KEY="your-key-here"
+# Set backend environment variable
+az webapp config appsettings set --name mastercard-backend-csutherland --resource-group mastercard-demo-rg --settings OPENAI_API_KEY="your-key-here"
+
+# Create frontend web app
+az webapp create --resource-group mastercard-demo-rg --plan mastercard-plan --name mastercard-csutherland --runtime "NODE:18-lts"
+
+# Deploy frontend code
+cd ../frontend
+npm run build
+az webapp up --name mastercard-csutherland --resource-group mastercard-demo-rg
 ```
 
 ## 📊 What Gets Deployed
@@ -139,8 +159,8 @@ The backend includes:
    - 60 minutes of compute time per day
 
 2. **CORS Configuration:**
-   - The backend allows requests from `localhost:5173` and `localhost:3000`
-   - Update CORS settings in `main.py` if deploying frontend to a different domain
+   - The backend allows requests from `localhost:5173`, `localhost:3000`, and `https://mastercard-csutherland.azurewebsites.net`
+   - Update CORS settings in backend `main.py` if deploying frontend to a different domain
 
 3. **API Key Security:**
    - Never commit API keys to Git

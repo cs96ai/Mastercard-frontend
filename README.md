@@ -33,7 +33,14 @@ npm install
 ```
 
 2. Configure environment variables:
-Create a `.env` file in the root directory with your API configuration.
+Create a `.env` file in the root directory:
+```env
+# Production backend (Azure)
+VITE_BACKEND_URL=https://mastercard-backend-csutherland.azurewebsites.net
+
+# Local development backend (uncomment to use)
+# VITE_BACKEND_URL=http://localhost:8000
+```
 
 3. Start the development server:
 ```bash
@@ -80,6 +87,13 @@ The frontend can be deployed to:
 - GitHub Pages
 - AWS S3 + CloudFront
 - Azure Static Web Apps
+
+### Production Deployment
+
+**Frontend URL:** https://mastercard-csutherland.azurewebsites.net  
+**Backend API URL:** https://mastercard-backend-csutherland.azurewebsites.net
+
+The application is deployed on Azure App Service. Use the `build-zip.bat` script to create a deployment package.
 
 ## 📝 Project Structure
 

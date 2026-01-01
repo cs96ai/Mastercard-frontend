@@ -62,12 +62,13 @@ echo ZIP file created: frontend-deploy.zip
 echo.
 echo To deploy to Azure:
 echo 1. Go to https://portal.azure.com
-echo 2. Navigate to: mastercard-csutherland
+echo 2. Navigate to: mastercard-csutherland (Frontend App Service)
 echo 3. Go to: Development Tools ^> Advanced Tools ^> Go
 echo 4. In Kudu, go to: Tools ^> Zip Push Deploy
 echo 5. Drag and drop: frontend-deploy.zip
 echo.
-echo Target: https://mastercard-csutherland.azurewebsites.net
+echo Frontend URL: https://mastercard-csutherland.azurewebsites.net
+echo Backend URL:  https://mastercard-backend-csutherland.azurewebsites.net
 echo.
 
 pause
