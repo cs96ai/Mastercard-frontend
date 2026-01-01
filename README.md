@@ -16,10 +16,16 @@ A full-stack application for analyzing and explaining credit card fraud scenario
 
 ## 🛠️ Technology Stack
 
+### Frontend
 - **Vue.js 3**: Progressive JavaScript framework
 - **Vite**: Next-generation frontend tooling
 - **Axios**: HTTP client for API requests
 - **Vue Router**: Client-side routing
+
+### Backend
+- **FastAPI**: Modern Python web framework
+- **OpenAI GPT-4**: AI-powered fraud analysis
+- **Azure App Service**: Cloud hosting platform
 
 ## 📦 Installation
 
