@@ -68,7 +68,7 @@ echo 4. In Kudu, go to: Tools ^> Zip Push Deploy
 echo 5. Drag and drop: frontend-deploy.zip
 echo.
 echo Frontend URL: https://mastercard-csutherland.azurewebsites.net
-echo Backend URL:  https://mastercard-backend-csutherland.azurewebsites.net
+echo Backend URL:  https://mastercardapi-csutherland.azurewebsites.net
 echo.
 
 pause

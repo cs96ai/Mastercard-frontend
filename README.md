@@ -38,7 +38,7 @@ npm install
 Create a `.env` file in the root directory:
 ```env
 # Production backend (Azure)
-VITE_BACKEND_URL=https://mastercard-backend-csutherland.azurewebsites.net
+VITE_BACKEND_URL=https://mastercardapi-csutherland.azurewebsites.net
 
 # Local development backend (uncomment to use)
 # VITE_BACKEND_URL=http://localhost:8000
@@ -93,7 +93,7 @@ The frontend can be deployed to:
 ### Production Deployment
 
 **Frontend URL:** https://mastercard-csutherland.azurewebsites.net  
-**Backend API URL:** https://mastercard-backend-csutherland.azurewebsites.net
+**Backend API URL:** https://mastercardapi-csutherland.azurewebsites.net
 
 The application is deployed on Azure App Service. Use the `build-zip.bat` script to create a deployment package.
 

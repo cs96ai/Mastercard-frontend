@@ -9,7 +9,7 @@
 Your application is configured for Azure App Service deployment.
 
 **Frontend URL:** https://mastercard-csutherland.azurewebsites.net  
-**Backend URL:** https://mastercard-backend-csutherland.azurewebsites.net
+**Backend URL:** https://mastercardapi-csutherland.azurewebsites.net
 
 ## 📋 Pre-Deployment Checklist
 
@@ -44,7 +44,7 @@ Your application is configured for Azure App Service deployment.
    - Select "Create App Service Web App..."
    
 3. **Configure the Web App**
-   - **Backend Name:** `mastercard-backend-csutherland`
+   - **Backend Name:** `mastercardapi-csutherland`
    - **Frontend Name:** `mastercard-csutherland`
    - **Backend Runtime Stack:** Python 3.11 or 3.12
    - **Frontend Runtime Stack:** Node 18 LTS
@@ -75,15 +75,15 @@ After deployment, you need to add your OpenAI API key:
 
 Your API will be available at:
 ```
-https://mastercard-backend-csutherland.azurewebsites.net
+https://mastercardapi-csutherland.azurewebsites.net
 ```
 
 Test endpoints:
-- `https://mastercard-backend-csutherland.azurewebsites.net/` - Root endpoint
-- `https://mastercard-backend-csutherland.azurewebsites.net/api/scenarios` - Fraud scenarios
-- `https://mastercard-backend-csutherland.azurewebsites.net/api/merchants` - Merchant data
-- `https://mastercard-backend-csutherland.azurewebsites.net/api/customers` - Customer profiles
-- `https://mastercard-backend-csutherland.azurewebsites.net/api/disputes` - Dispute cases
+- `https://mastercardapi-csutherland.azurewebsites.net/` - Root endpoint
+- `https://mastercardapi-csutherland.azurewebsites.net/api/scenarios` - Fraud scenarios
+- `https://mastercardapi-csutherland.azurewebsites.net/api/merchants` - Merchant data
+- `https://mastercardapi-csutherland.azurewebsites.net/api/customers` - Customer profiles
+- `https://mastercardapi-csutherland.azurewebsites.net/api/disputes` - Dispute cases
 
 ## 🖥️ Frontend Configuration
 
@@ -91,7 +91,7 @@ After deploying the backend, update your frontend to use the Azure URL:
 
 1. Update `.env` file:
 ```env
-VITE_BACKEND_URL=https://mastercard-backend-csutherland.azurewebsites.net
+VITE_BACKEND_URL=https://mastercardapi-csutherland.azurewebsites.net
 ```
 
 2. The `src/config.js` file automatically reads from environment variables:
@@ -122,14 +122,14 @@ az group create --name mastercard-demo-rg --location eastus
 az appservice plan create --name mastercard-plan --resource-group mastercard-demo-rg --sku F1 --is-linux
 
 # Create backend web app
-az webapp create --resource-group mastercard-demo-rg --plan mastercard-plan --name mastercard-backend-csutherland --runtime "PYTHON:3.11"
+az webapp create --resource-group mastercard-demo-rg --plan mastercard-plan --name mastercardapi-csutherland --runtime "PYTHON:3.11"
 
 # Deploy backend code
 cd backend
-az webapp up --name mastercard-backend-csutherland --resource-group mastercard-demo-rg
+az webapp up --name mastercardapi-csutherland --resource-group mastercard-demo-rg
 
 # Set backend environment variable
-az webapp config appsettings set --name mastercard-backend-csutherland --resource-group mastercard-demo-rg --settings OPENAI_API_KEY="your-key-here"
+az webapp config appsettings set --name mastercardapi-csutherland --resource-group mastercard-demo-rg --settings OPENAI_API_KEY="your-key-here"
 
 # Create frontend web app
 az webapp create --resource-group mastercard-demo-rg --plan mastercard-plan --name mastercard-csutherland --runtime "NODE:18-lts"

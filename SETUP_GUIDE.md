@@ -3,7 +3,7 @@
 ## Production Deployment
 
 **Frontend:** https://mastercard-csutherland.azurewebsites.net  
-**Backend API:** https://mastercard-backend-csutherland.azurewebsites.net
+**Backend API:** https://mastercardapi-csutherland.azurewebsites.net
 
 ---
 
@@ -23,7 +23,7 @@ Update `.env` file:
 VITE_BACKEND_URL=http://localhost:8000
 
 # For production Azure backend
-# VITE_BACKEND_URL=https://mastercard-backend-csutherland.azurewebsites.net
+# VITE_BACKEND_URL=https://mastercardapi-csutherland.azurewebsites.net
 ```
 
 ## Step 3: Start the Development Server
