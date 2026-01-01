@@ -188,7 +188,7 @@
 import axios from 'axios'
 import { config } from '../config.js'
 
-const API_BASE = config.BACKEND_URL || 'http://localhost:8000'
+const API_BASE = config.BACKEND_URL
 
 export default {
   name: 'CustomerUpgrade',
