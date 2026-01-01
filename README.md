@@ -2,7 +2,8 @@
 
 A full-stack application for analyzing and explaining credit card fraud scenarios using AI-powered insights.
 
-**Live Demo:** https://mastercard-csutherland.azurewebsites.net
+**Live Demo:** https://mastercard-csutherland.azurewebsites.net  
+**API Backend:** https://mastercardapi-csutherland.azurewebsites.net
 
 ## 🚀 Features
 
