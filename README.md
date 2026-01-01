@@ -2,6 +2,8 @@
 
 A full-stack application for analyzing and explaining credit card fraud scenarios using AI-powered insights.
 
+**Live Demo:** https://mastercard-csutherland.azurewebsites.net
+
 ## 🚀 Features
 
 - **Interactive Fraud Scenario Analysis**: Analyze various types of credit card fraud patterns
